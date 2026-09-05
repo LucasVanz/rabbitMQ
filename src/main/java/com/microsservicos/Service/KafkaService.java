@@ -3,18 +3,20 @@ package com.microsservicos.Service;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
-import com.example.DTO.PrecoDTO;
 import com.microsservicos.demo.connections.KafkaConnection;
 
-import lombok.AllArgsConstructor;
 
-@Service 
-@AllArgsConstructor 
+
+@Service
 public class KafkaService {
     
-    private final KafkaTemplate<String, PrecoDTO> kafkaTemplate;
+    private final KafkaTemplate<String, String> kafkaTemplate;
 
-    public void enviar(PrecoDTO precoDTO) {
-        kafkaTemplate.send(KafkaConnection.TOPICO_PRECO, precoDTO);
+    public KafkaService(KafkaTemplate<String, String> kafkaTemplate) {
+        this.kafkaTemplate = kafkaTemplate;
+    }
+
+    public void enviar(String json) {
+        kafkaTemplate.send(KafkaConnection.TOPICO_PRECO, json);
     }
 }

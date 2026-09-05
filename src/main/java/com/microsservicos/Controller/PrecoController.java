@@ -10,22 +10,30 @@ import org.springframework.web.bind.annotation.RestController;
 import com.microsservicos.Service.KafkaService;
 
 import lombok.AllArgsConstructor;
+import tools.jackson.databind.ObjectMapper;
 
 import com.example.DTO.PrecoDTO;
 
 // API REST
 @RestController
-@AllArgsConstructor 
 // Mapeia a classe através de um endpoint
 @RequestMapping(value = "preco")
 public class PrecoController {
 
     private KafkaService kafkaService;
 
+    private ObjectMapper objectMapper;
+
+    public PrecoController(KafkaService kafkaService, ObjectMapper objectMapper) {
+        this.kafkaService = kafkaService;
+        this.objectMapper = objectMapper;
+    }
+
 
     @PutMapping
     private ResponseEntity<Object> alteraPreco(@RequestBody PrecoDTO precoDTO){
-        kafkaService.enviar(precoDTO);
+        String json = objectMapper.writeValueAsString(precoDTO);
+        kafkaService.enviar(json);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 }
