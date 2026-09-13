@@ -1,0 +1,9 @@
+{
+  "type": "record",
+  "name": "Preco",
+  "namespace": "com.microsservicos.avro",
+  "fields": [
+    { "name": "nomeProduto", "type": "string" },
+    { "name": "preco", "type": "double" }
+  ]
+}

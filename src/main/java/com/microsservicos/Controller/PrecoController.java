@@ -32,8 +32,9 @@ public class PrecoController {
 
     @PutMapping
     private ResponseEntity<Object> alteraPreco(@RequestBody PrecoDTO precoDTO){
-        String json = objectMapper.writeValueAsString(precoDTO);
-        kafkaService.enviar(json);
+        // String json = objectMapper.writeValueAsString(precoDTO);
+        // kafkaService.enviar(json);
+        kafkaService.enviar(precoDTO);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 }
