@@ -20,8 +20,9 @@ public class KafkaService {
    // public void enviar(String json) {
    //     kafkaTemplate.send(KafkaConnection.TOPICO_PRECO, json);
    // }
-   public void enviar(PrecoDTO precoDTO) {
+   public void enviar(Long sagaId, PrecoDTO precoDTO) {
        Preco precoAvro = Preco.newBuilder()
+                .setSagaId(sagaId)
                 .setNomeProduto(precoDTO.nomeProduto)
                 .setPreco(precoDTO.preco)
                 .build();    

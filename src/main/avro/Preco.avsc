@@ -3,6 +3,7 @@
   "name": "Preco",
   "namespace": "com.microsservicos.avro",
   "fields": [
+    { "name": "sagaId", "type": "long" },
     { "name": "nomeProduto", "type": "string" },
     { "name": "preco", "type": "double" }
   ]
