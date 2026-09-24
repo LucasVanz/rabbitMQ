@@ -24,6 +24,8 @@ public class Saga {
         this.createdAt = createdAt;
     }
     
+    public Saga() {
+    }
     
 
     @Id 
